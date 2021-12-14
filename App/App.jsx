@@ -12,7 +12,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h3 className="p-3 text-center">Assignment 9</h3>
         <ul>
             <li><Article1 /></li>
             <li><Article2 /></li>
