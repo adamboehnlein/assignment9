@@ -6,55 +6,46 @@ class Article3 extends React.Component {
         super(props);
 
         this.state = {
-            title: null,
-            img1A: null,
-            img1B: null,
-            anchor: null,
-            avatar: null,
-            url: null,
-            commCount: null
-        };
-    }
+          title: '',
+          location: '',
+          size: '',
+          anchor: '',
+          avi: '',
+          url: '',
+          commCount: ''
+      };
+  }
 
-    componentDidMount() {
-        // Simple GET request using axios
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ title: response.data[2].title }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ img1A: response.data[2].thumbnail.location }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ img1B: response.data[2].thumbnail.images.medium }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ author: response.data[2].author.name }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ avatar: response.data[2].author.avatar }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ url: response.data[2].url }));
-        axios.get('https://www.jalirani.com/files/barstool.json')
-            .then(response => this.setState({ commCount: response.data[2].comment_count }));
-    }
+  componentDidMount() {
+      // Simple GET request using axios
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ title: response.data[2].title }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ location: response.data[2].thumbnail.location }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ size: response.data[2].thumbnail.images.medium }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ author: response.data[2].author.name }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ avi: response.data[2].author.avatar }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ url: response.data[2].url }));
+      axios.get('https://www.jalirani.com/files/barstool.json')
+          .then(response => this.setState({ commCount: response.data[2].comment_count }));
+  }
 
-    render() {
-        const { title } = this.state;
-        const { author } = this.state;
-        const { avatar } = this.state;
-        const { url } = this.state;
-        const { commCount } = this.state;
-        const { img1A } = this.state;
-        const { img1B } = this.state;
-        return (
-            <div class="app">
-                <h3>{title}</h3>
-                <img src= {img1A + img1B} alt="Article 1 Thumbnail"/>
-                <img src={avatar} alt="Author Avatar"/>
-                <p>{author}</p>
-                <p>{commCount}</p>
-                <br></br>
-                <a href= {url} ></a>
+  render() {
+      return (
+          <div class="app">
+              <h3>{this.state.title}</h3>
+              <img src= {this.state.location + this.state.size} alt="Article 1 Thumbnail"/>
+              <img src={this.state.avi} alt="Author Avatar"/>
+              <p>{this.state.author}</p><p>{this.state.commCount}</p><br></br>
+              <a href= {this.state.url} >{this.state.url}</a>
 
-            </div>
-        );
-    }
+          </div>
+      );
+  }
 }
 
 export { Article3 }; 
